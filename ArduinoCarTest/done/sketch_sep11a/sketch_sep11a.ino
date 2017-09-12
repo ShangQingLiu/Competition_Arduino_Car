@@ -37,26 +37,25 @@ void loop()
   num4 = digitalRead(SS4);
   num5 = digitalRead(SS5);
   near = digitalRead(NEAR);
-  
-  if (near ==0)//接近的时后
+ 
+  if (near==1)//接近的时后
   { 
     Serial.print("near");
     runback();
-    delayMicroseconds(4);
+    delay(400000);//test
+    Serial.print("near1");
     turnVR();
-    delayMicroseconds(10);
-    runfoward();
-    delayMicroseconds(20);
-    turnVL();
-     delayMicroseconds(10);
+    delay(350000);
+    Serial.print("near2");
+   // runfoward();
+    delayMicroseconds(40000);
+   // turnVL();
+     delayMicroseconds(10000);
     
   }
-  
-   runback();
-   delay(1000);
-   runfoward();
-    delay(1000);
-    runback();
+
+   
+  /*
   if(clp==1)
   {
     Serial.print("runback");
@@ -71,7 +70,7 @@ void loop()
      delayMicroseconds(100);
  
     }
-  
+  */
  else if (num1 == 0 && num2 == 0 && num3 == 1)//循迹转弯
   {
     Serial.print("turnVL");

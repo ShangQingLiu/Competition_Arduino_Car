@@ -37,10 +37,10 @@ void runfoward()   //前进
 }
 void runback()    //后退
 {
-  motor(2,A8,1,210);
-  motor(4,A4,1,190);
-  motor(3,A3,2,50);
-  motor(6,A6,1,200);
+  motor(2,A8,1,45);
+  motor(4,A4,1,65);
+  motor(3,A3,2,205);
+  motor(6,A6,1,55);
 }
 void turnL()     //左转
 {
