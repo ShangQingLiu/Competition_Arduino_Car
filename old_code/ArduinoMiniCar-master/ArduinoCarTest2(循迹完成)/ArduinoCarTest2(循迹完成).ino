@@ -1,10 +1,14 @@
 #include"ArduinoMovement.h"
+#include"SR04.h"
+#define ECHO_PIN 8
+#define TRIG_PIN 9
 /*低电平= 0为黑
  * 高电平 = 1 为白
  */
 int flag_A= 1;
 int flag_B= 1;
-
+SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
+long distance;
 void setup() {
   /*initail*/
   Serial.begin(9600);
@@ -29,6 +33,7 @@ void setup() {
   pinMode(RBWHEEL_A, OUTPUT);
   pinMode(RBWHEEL, OUTPUT);
   
+
 }
 
 void loop()
@@ -43,8 +48,11 @@ void loop()
   num4 = digitalRead(SS4);
   num5 = digitalRead(SS5);
   near = digitalRead(NEAR);
+  distance = sr04.Distance();
+  Serial.print(distance);
+  Serial.println("cm");
   
- /* if (near ==1)//接近的时后
+  if (distance < 8)//接近的时后
   { 
     Serial.print("neark");
     /*runback();
@@ -56,7 +64,7 @@ void loop()
     turnVL();
      delayMicroseconds(10);
 
-  }*/
+  }
    /*test for time
    runback();
    Serial.print("runback1");
@@ -118,7 +126,7 @@ else if(num1==0 && num2==0 &&num3==0 &&num4==0)//黑黑黑黑 直走
      turnR();
      delay(50000);
     runfoward();
-    delay(5,,,,,,,,,,,,,,,,,,,,,,,0000);
+    delay(50000);
    }
 
  else if(num3==0 && num4==0&& num5==0&&flag_B)// 右黑黑黑 转向特殊情况
